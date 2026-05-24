@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gibran Al Hasan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#111;--border:#1e1e1e;--dim:#2a2a2a;
+  --white:#f5f5f0;--off:#a0a09a;
+  --fd:'Bebas Neue',sans-serif;
+  --fs:'DM Serif Display',serif;
+  --fb:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;overflow-x:hidden;cursor:none}
+body::before{content:'';position:fixed;inset:0;z-index:0;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events:none}
+
+/* CURSOR */
+#cur{position:fixed;top:0;left:0;z-index:9999;width:10px;height:10px;background:var(--white);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform .12s,opacity .2s}
+#cur-r{position:fixed;top:0;left:0;z-index:9998;width:34px;height:34px;border:1px solid rgba(245,245,240,.3);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform .4s cubic-bezier(.23,1,.32,1)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;transition:border-color .3s,background .3s,backdrop-filter .3s}
+nav.scrolled{border-bottom:1px solid var(--border);background:rgba(10,10,10,.88);backdrop-filter:blur(20px)}
+.nav-logo{font-family:var(--fd);font-size:1.35rem;letter-spacing:.12em;color:var(--white);text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--off);text-decoration:none;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;font-weight:400}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{padding:.5rem 1.3rem;border:1px solid var(--border);border-radius:2px;color:var(--white)!important;transition:background .2s,border-color .2s!important}
+.nav-cta:hover{background:var(--white)!important;color:var(--bg)!important}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:flex-end;padding:0 3rem 5rem;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+.hero-left{}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--off);margin-bottom:1.4rem;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-name{font-family:var(--fd);font-size:clamp(4.5rem,12vw,11rem);line-height:.92;letter-spacing:.02em;color:var(--white);opacity:0;animation:fadeUp .9s .35s forwards}
+.hero-name em{font-family:var(--fs);font-style:italic;color:var(--off)}
+.hero-desc{max-width:520px;font-size:.95rem;line-height:1.8;color:var(--off);margin-top:2.5rem;opacity:0;animation:fadeUp .8s .5s forwards}
+.hero-desc strong{color:var(--white);font-weight:400}
+.hero-btns{display:flex;gap:1rem;margin-top:2.5rem;opacity:0;animation:fadeUp .8s .65s forwards}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;gap:2rem;opacity:0;animation:fadeUp 1s .5s forwards}
+.hero-photo-wrap{position:relative;width:340px;height:420px;flex-shrink:0}
+.hero-photo-wrap::before{content:'';position:absolute;inset:-1px;border:1px solid var(--border);border-radius:4px;z-index:1;pointer-events:none}
+.hero-photo-wrap::after{content:'';position:absolute;bottom:-12px;right:-12px;width:100%;height:100%;border:1px solid var(--dim);border-radius:4px;z-index:0}
+.hero-photo{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:3px;display:block;position:relative;z-index:1;filter:grayscale(20%)}
+.hero-photo-placeholder{width:100%;height:100%;background:var(--surface);border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;position:relative;z-index:1}
+.hero-photo-placeholder svg{width:48px;height:48px;stroke:var(--dim)}
+.hero-photo-placeholder span{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+.hero-photo-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--off);text-align:right}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp .8s .9s forwards}
+.scroll-line{width:50px;height:1px;background:var(--border);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--off);animation:scrollAnim 2s 1.5s infinite}
+@keyframes scrollAnim{to{left:100%}}
+.scroll-text{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--off)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.82rem 1.9rem;font-family:var(--fb);font-size:.76rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .25s;cursor:none}
+.btn-primary{background:var(--white);color:var(--bg);border:1px solid var(--white)}
+.btn-primary:hover{background:transparent;color:var(--white)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--white)}
+
+/* SECTIONS */
+section{position:relative;padding:7rem 3rem}
+.sec-label{font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--off);margin-bottom:3rem;display:flex;align-items:center;gap:1.5rem}
+.sec-label::before{content:'';display:inline-block;width:36px;height:1px;background:var(--border)}
+.sec-title{font-family:var(--fs);font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.1;margin-bottom:3.5rem;font-weight:400}
+.sec-title em{font-style:italic;color:var(--off)}
+
+/* ABOUT */
+#about{border-top:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:6rem;align-items:start}
+.about-stats{display:flex;flex-direction:column;gap:2.5rem;position:sticky;top:8rem}
+.stat{border-top:1px solid var(--border);padding-top:1.4rem}
+.stat-n{font-family:var(--fd);font-size:3.2rem;line-height:1;color:var(--white);letter-spacing:.02em}
+.stat-l{font-size:.72rem;color:var(--off);letter-spacing:.12em;text-transform:uppercase;margin-top:.3rem}
+.about-body p{font-size:1rem;line-height:1.9;color:var(--off);margin-bottom:1.4rem}
+.about-body p strong{color:var(--white);font-weight:400}
+.about-loc{display:flex;align-items:center;gap:.6rem;font-size:.76rem;color:var(--off);letter-spacing:.08em;margin-top:1.8rem}
+
+/* EXPERIENCE */
+#experience{border-top:1px solid var(--border)}
+.exp-list{display:flex;flex-direction:column;gap:0}
+.exp-item{border-top:1px solid var(--border);padding:2.8rem 0;display:grid;grid-template-columns:200px 1fr;gap:4rem}
+.exp-item:last-child{border-bottom:1px solid var(--border)}
+.exp-meta{}
+.exp-period{font-size:.72rem;letter-spacing:.1em;color:var(--off);text-transform:uppercase;margin-bottom:.8rem}
+.exp-type{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .7rem;border:1px solid var(--border);color:var(--off);border-radius:1px}
+.exp-body{}
+.exp-company{font-family:var(--fs);font-size:1.6rem;font-weight:400;color:var(--white);margin-bottom:.3rem}
+.exp-role{font-size:.8rem;color:var(--off);letter-spacing:.08em;margin-bottom:1.5rem}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.exp-bullets li{font-size:.88rem;line-height:1.7;color:var(--off);display:flex;gap:.9rem}
+.exp-bullets li::before{content:'—';color:var(--dim);flex-shrink:0}
+.exp-bullets li strong{color:var(--white);font-weight:400}
+
+/* PROJECTS */
+#projects{border-top:1px solid var(--border)}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+.proj-card{background:var(--bg);padding:2.8rem;cursor:none;transition:background .3s;position:relative;overflow:hidden}
+.proj-card:hover{background:var(--surface)}
+.proj-card::after{content:'↗';position:absolute;top:2.5rem;right:2.5rem;font-size:1.1rem;color:var(--dim);transition:color .3s,transform .3s}
+.proj-card:hover::after{color:var(--white);transform:translate(3px,-3px)}
+.proj-idx{font-family:var(--fd);font-size:.9rem;color:var(--dim);letter-spacing:.1em;margin-bottom:1.8rem}
+.proj-tag{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--off);margin-bottom:.7rem}
+.proj-title{font-family:var(--fs);font-size:1.45rem;font-weight:400;color:var(--white);line-height:1.25;margin-bottom:.9rem}
+.proj-desc{font-size:.83rem;line-height:1.72;color:var(--off)}
+.proj-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--off);border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .2s,border-color .2s;cursor:none;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--fb)}
+.proj-cta:hover{color:var(--white);border-color:var(--white)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .35s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{position:fixed;top:0;right:0;bottom:0;z-index:501;width:min(680px,100vw);background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;transform:translateX(100%);transition:transform .4s cubic-bezier(.23,1,.32,1)}
+.modal.open{transform:translateX(0)}
+.modal-inner{padding:3.5rem 3rem}
+.modal-close{position:sticky;top:0;display:flex;justify-content:flex-end;background:var(--surface);padding:1.2rem 0 1.2rem;z-index:10;margin-bottom:1rem}
+.modal-close button{background:none;border:1px solid var(--border);color:var(--off);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 1rem;cursor:none;font-family:var(--fb);transition:color .2s,border-color .2s}
+.modal-close button:hover{color:var(--white);border-color:var(--white)}
+.modal-tag{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--off);margin-bottom:1rem}
+.modal-title{font-family:var(--fs);font-size:2rem;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:2rem}
+.modal-section{margin-bottom:2rem}
+.modal-section h3{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--off);margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.modal-section p{font-size:.88rem;line-height:1.8;color:var(--off);margin-bottom:.8rem}
+.modal-section p strong{color:var(--white);font-weight:400}
+.modal-bullets{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.modal-bullets li{font-size:.87rem;line-height:1.7;color:var(--off);display:flex;gap:.9rem}
+.modal-bullets li::before{content:'→';color:var(--dim);flex-shrink:0}
+.modal-bullets li strong{color:var(--white);font-weight:400}
+
+/* SKILLS */
+#skills{border-top:1px solid var(--border)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.skill-grp{background:var(--bg);padding:2.5rem}
+.skill-grp-title{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--off);margin-bottom:1.4rem;padding-bottom:.9rem;border-bottom:1px solid var(--border)}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+.skill-list li{font-size:.87rem;color:var(--white);display:flex;align-items:center;gap:.75rem}
+.skill-list li::before{content:'';width:4px;height:4px;background:var(--off);border-radius:50%;flex-shrink:0}
+
+/* CERTS */
+#certificates{border-top:1px solid var(--border)}
+.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+.cert-card{background:var(--surface);padding:2.8rem;position:relative;overflow:hidden}
+.cert-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--white);transition:height .4s}
+.cert-card:hover::before{height:100%}
+.cert-issuer{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--off);margin-bottom:1rem}
+.cert-name{font-family:var(--fs);font-size:1.3rem;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:.9rem}
+.cert-desc{font-size:.82rem;line-height:1.7;color:var(--off);margin-bottom:1.4rem}
+.cert-foot{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.cert-date{font-size:.7rem;color:var(--off);letter-spacing:.08em}
+.cert-verify{font-size:.7rem;color:var(--white);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color .2s}
+.cert-verify:hover{border-color:var(--white)}
+
+/* CONTACT */
+#contact{border-top:1px solid var(--border);text-align:center;padding:8rem 3rem}
+.contact-over{font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--off);margin-bottom:2rem}
+.contact-h{font-family:var(--fd);font-size:clamp(4rem,10vw,9rem);line-height:.9;letter-spacing:.02em;color:var(--white);margin-bottom:3rem}
+.contact-h em{font-family:var(--fs);font-style:italic;color:var(--off)}
+.contact-sub{font-size:.92rem;color:var(--off);max-width:400px;margin:0 auto 3.5rem;line-height:1.8}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem}
+.btn-lg{padding:1rem 2.4rem;font-size:.78rem}
+.contact-links{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:.55rem;font-size:.77rem;color:var(--off);text-decoration:none;letter-spacing:.08em;transition:color .2s;cursor:none}
+.contact-link:hover{color:var(--white)}
+.contact-link svg{width:13px;height:13px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.foot-copy{font-size:.7rem;color:var(--dim);letter-spacing:.08em}
+.foot-mark{font-family:var(--fd);font-size:.9rem;letter-spacing:.15em;color:var(--dim)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-links{display:none}
+  #hero{grid-template-columns:1fr;padding:6rem 1.5rem 4rem}
+  .hero-right{align-items:flex-start}
+  .hero-photo-wrap{width:260px;height:320px}
+  section{padding:5rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .about-stats{position:static;flex-direction:row;flex-wrap:wrap}
+  .exp-item{grid-template-columns:1fr;gap:1.5rem}
+  .proj-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+  body{cursor:auto}
+  #cur,#cur-r{display:none}
+  .modal{width:100vw}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">G.A.H</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certificates">Certs</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Visual Communication Designer · Social Media Manager · Copywriter</p>
+    <h1 class="hero-name">Gibran<br><em>Al Hasan</em></h1>
+    <p class="hero-desc">
+      ITB Visual Communication Design student with <strong>3+ years</strong> of experience spanning
+      <strong>Esports</strong>, <strong>Web3</strong>, and global freelance markets.
+      Building brands that people actually remember.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <!-- Replace src with your actual photo. Rename your photo file to "photo.jpg" and put it in the same folder as index.html -->
+      <img src="photo.jpg" alt="Gibran Al Hasan" class="hero-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="hero-photo-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Add photo.jpg</span>
+      </div>
+    </div>
+    <p class="hero-photo-label">📍 Karawang, West Java, Indonesia</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label">About</div>
+  <div class="about-grid">
+    <div class="about-stats">
+      <div class="stat reveal">
+        <div class="stat-n">3+</div>
+        <div class="stat-l">Years of Experience</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-n">5×</div>
+        <div class="stat-l">Exchange Endorsements</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-n">5+</div>
+        <div class="stat-l">Creator Collaborations</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-n">2×</div>
+        <div class="stat-l">Workshop Speaker</div>
+      </div>
+    </div>
+    <div class="about-body reveal">
+      <h2 class="sec-title">Designing with<br><em>intention</em></h2>
+      <p>I'm a Visual Communication Design student at <strong>Institut Teknologi Bandung (ITB)</strong>, with over three years of real-world experience bridging high-impact visuals and strategic storytelling.</p>
+      <p>My journey spans developing creative assets for <strong>EVOS Esports</strong> — one of Indonesia's largest esports organizations — delivering conversion-focused content for international clients on <strong>Upwork</strong>, and leading social media growth initiatives within the <strong>Web3 ecosystem at Crowdpunk DAO</strong>.</p>
+      <p>I combine technical design proficiency with a data-driven approach to social media management and copywriting to build authentic community engagement and drive brand growth. Most notably, my design-led personal brand "<strong>Gebe</strong>" secured <strong>5 global exchange endorsements</strong> within just 14 days of launch.</p>
+      <div class="about-loc">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        Karawang, West Java, Indonesia &nbsp;·&nbsp; (+62) 831-8613-4519
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-label">Experience</div>
+  <h2 class="sec-title reveal">Where I've<br><em>worked</em></h2>
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2025 — Present</div>
+        <div class="exp-type">Contract · Remote</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-company">Crowdpunk DAO</div>
+        <div class="exp-role">Social Media Manager · Tallinn, Estonia</div>
+        <ul class="exp-bullets">
+          <li>Led a creator-driven grow campaign on X, successfully onboarding and coordinating <strong>5+ content creators</strong> to organically promote Crowdpunk DAO to Web3 audiences.</li>
+          <li>Engineered and executed comprehensive social media campaign strategies to bolster brand presence within the <strong>Web3 and DAO ecosystems</strong>.</li>
+          <li>Produced and curated daily high-engagement content tailored to emerging crypto trends to maintain community loyalty.</li>
+          <li>Conducted in-depth market research and trend analysis to ensure content relevancy and competitive positioning.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Dec 2023 — Nov 2024</div>
+        <div class="exp-type">Internship · On-site</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-company">EVOS Esports</div>
+        <div class="exp-role">Graphic Designer · Jakarta, Indonesia</div>
+        <ul class="exp-bullets">
+          <li>Developed high-impact visual assets for marketing campaigns of one of Indonesia's largest esports organizations, reaching <strong>millions of viewers</strong>.</li>
+          <li>Collaborated cross-functionally to blend art, visuals, and language into designs that elevated <strong>brand identity and product aesthetics</strong>.</li>
+          <li>Created original illustrations and graphic elements to effectively communicate product features to the gaming community.</li>
+          <li>Supported the marketing department in delivering daily visual needs across <strong>multiple official social media channels</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">2024 — 2025</div>
+        <div class="exp-type">Contract · Remote</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-company">BlockHood</div>
+        <div class="exp-role">Graphic Designer · Indonesia</div>
+        <ul class="exp-bullets">
+          <li>Designed <strong>partnership posters, daily educational content</strong>, and event promotion materials for Indonesia's Web3 beginner education community.</li>
+          <li>Established and maintained a cohesive visual language, reinforcing BlockHood's identity as a credible Web3 education platform.</li>
+          <li>Collaborated closely with creators and content teams to align visual outputs with educational messaging goals.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Nov 2022 — Mar 2024</div>
+        <div class="exp-type">Freelance · Remote</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-company">Upwork</div>
+        <div class="exp-role">Copywriter · International Clients</div>
+        <ul class="exp-bullets">
+          <li>Authored persuasive advertisement copy and marketing content for international clients, focusing on <strong>conversion rate optimization</strong>.</li>
+          <li>Collaborated closely with graphic designers and marketing teams to produce integrated and effective global campaigns.</li>
+          <li>Evaluated copy performance by analyzing audience feedback and data metrics to <strong>optimize communication strategies</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-label">Selected Work</div>
+  <h2 class="sec-title reveal">Projects that<br><em>speak</em></h2>
+  <div class="proj-grid">
+
+    <div class="proj-card reveal" onclick="openModal('evos')">
+      <div class="proj-idx">01</div>
+      <div class="proj-tag">Esports · Graphic Design · Internship</div>
+      <div class="proj-title">EVOS Esports — Creative Direction & Design</div>
+      <div class="proj-desc">Developed high-impact visual assets for marketing campaigns of one of Indonesia's largest esports organizations, reaching millions of viewers across multiple official channels.</div>
+      <button class="proj-cta">Read Case Study →</button>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('crowdpunk')">
+      <div class="proj-idx">02</div>
+      <div class="proj-tag">Web3 · Social Media · Community Growth</div>
+      <div class="proj-title">Crowdpunk DAO — Growth Campaign on X</div>
+      <div class="proj-desc">Led a creator-driven campaign on X, onboarding 5+ content creators to organically grow Crowdpunk DAO's brand presence in the Web3 ecosystem.</div>
+      <button class="proj-cta">Read Case Study →</button>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('blockhood')">
+      <div class="proj-idx">03</div>
+      <div class="proj-tag">Web3 Education · Graphic Design</div>
+      <div class="proj-title">BlockHood — Visual Identity & Content Design</div>
+      <div class="proj-desc">Designed partnership posters, daily educational content, and event materials for Indonesia's Web3 beginner education community.</div>
+      <button class="proj-cta">Read Case Study →</button>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('bitget')">
+      <div class="proj-idx">04</div>
+      <div class="proj-tag">Web3 · Brand Strategy · KOL Partnership</div>
+      <div class="proj-title">Bitget — 4× Strategic Exchange Partnership</div>
+      <div class="proj-desc">Secured and executed four consecutive partnership campaigns with Bitget, one of the world's leading crypto exchanges, as a verified KOL and Creative Strategist.</div>
+      <button class="proj-cta">Read Case Study →</button>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('mentorship')">
+      <div class="proj-idx">05</div>
+      <div class="proj-tag">Web3 · Design Mentorship · Speaker</div>
+      <div class="proj-title">Design Mentorship — Batch 1 & 2 Workshop</div>
+      <div class="proj-desc">Served as Lead Graphic Designer and two-time Guest Speaker for a high-traffic Web3 digital workshop series, covering Content Creation, DeFi, and Web3 Jobs.</div>
+      <button class="proj-cta">Read Case Study →</button>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('brand')">
+      <div class="proj-idx">06</div>
+      <div class="proj-tag">Personal Branding · Web3 · Growth</div>
+      <div class="proj-title">Web3 Personal Brand — "Gebe" on X</div>
+      <div class="proj-desc">Scaled a Web3 personal brand from zero to 5 global exchange endorsements in just 14 days using a Visual-First educational content strategy on X (Twitter).</div>
+      <button class="proj-cta">Read Case Study →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-label">Skills & Tools</div>
+  <h2 class="sec-title reveal">What I<br><em>bring</em></h2>
+  <div class="skills-grid reveal">
+    <div class="skill-grp">
+      <div class="skill-grp-title">🎨 Design & Visual</div>
+      <ul class="skill-list">
+        <li>Adobe Illustrator</li>
+        <li>Adobe Photoshop</li>
+        <li>Adobe InDesign</li>
+        <li>Figma</li>
+        <li>Canva</li>
+      </ul>
+    </div>
+    <div class="skill-grp">
+      <div class="skill-grp-title">📱 Social Media & Community</div>
+      <ul class="skill-list">
+        <li>Social Media Strategy</li>
+        <li>Content Planning & Curation</li>
+        <li>Community Management</li>
+        <li>Creator Outreach & Collaboration</li>
+        <li>Web3 & DAO Ecosystem</li>
+      </ul>
+    </div>
+    <div class="skill-grp">
+      <div class="skill-grp-title">✍️ Copywriting & Communication</div>
+      <ul class="skill-list">
+        <li>Persuasive Ad Copywriting</li>
+        <li>Brand Storytelling</li>
+        <li>Content Writing (EN & ID)</li>
+        <li>Campaign Messaging</li>
+        <li>Audience Research</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="sec-label">Certificates</div>
+  <h2 class="sec-title reveal">Credentials &<br><em>learning</em></h2>
+  <div class="cert-grid reveal">
+    <div class="cert-card">
+      <div class="cert-issuer">Binance Academy × Tokocrypto × Coinvestasi</div>
+      <div class="cert-name">Web3 University Tour Yogyakarta</div>
+      <div class="cert-desc">Certificate of participation as a Participant in the Web3 University Tour Yogyakarta Educational Seminar, organized at Universitas Gadjah Mada, Yogyakarta.</div>
+      <div class="cert-foot"><span class="cert-date">April 29, 2025</span></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Coursera — Project Certificate</div>
+      <div class="cert-name">Business Analysis & Process Management</div>
+      <div class="cert-desc">Successfully completed the Business Analysis & Process Management online project. Demonstrates ability to analyze processes, identify inefficiencies, and implement improvements.</div>
+      <div class="cert-foot">
+        <span class="cert-date">May 8, 2026</span>
+        <a href="https://coursera.org/verify/YUAQLNGFAHKZ" target="_blank" class="cert-verify">Verify ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-over">Let's Work Together</div>
+  <h2 class="contact-h reveal">Let's<br><em>Connect</em></h2>
+  <p class="contact-sub reveal">Open to creative collaborations, freelance projects, and full-time opportunities. Don't hesitate to reach out.</p>
+  <div class="contact-btns reveal">
+    <a href="mailto:your@email.com" class="btn btn-primary btn-lg">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Send Email
+    </a>
+    <a href="tel:+6283186134519" class="btn btn-outline btn-lg">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.17 11.8 19.79 19.79 0 0 1 1.1 3.18 2 2 0 0 1 3.08 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Call Me
+    </a>
+    <a href="https://wa.me/6283186134519" target="_blank" class="btn btn-outline btn-lg">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+  <div class="contact-links reveal">
+    <a href="tel:+6283186134519" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.17 11.8 19.79 19.79 0 0 1 1.1 3.18 2 2 0 0 1 3.08 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (+62) 831-8613-4519
+    </a>
+    <a href="mailto:your@email.com" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      your@email.com
+    </a>
+    <span class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+      Karawang, West Java, Indonesia
+    </span>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-copy">© 2026 Gibran Al Hasan. All rights reserved.</span>
+  <span class="foot-mark">G.A.H</span>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="overlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <div class="modal-inner">
+    <div class="modal-close"><button onclick="closeModal()">✕ &nbsp;Close</button></div>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+/* ── Cursor ── */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;
+});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(anim)})();
+
+/* ── Nav scroll ── */
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+
+/* ── Reveal ── */
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── Modal data ── */
+const projects={
+  evos:{
+    tag:'Esports · Graphic Design · Internship · Dec 2023 – Nov 2024',
+    title:'EVOS Esports — Creative Direction & Design',
+    sections:[
+      {h:'Context',body:'EVOS Esports is one of Indonesia\'s largest and most recognized esports organizations, with a fanbase reaching millions of viewers across multiple platforms. As a Graphic Designer Intern, I was embedded within the marketing department to support the visual production needs of a fast-paced, high-visibility brand operating across competitive gaming, content creation, and community engagement.'},
+      {h:'Problem',body:'As a leading esports organization, EVOS demands a constant and high-volume output of visual assets across multiple official social media channels simultaneously. Each piece must meet a professional standard that resonates with a massive and highly engaged gaming audience, while communicating product features, campaign messages, and brand identity with clarity and impact.'},
+      {h:'My Strategy',bullets:['Brand Immersion — Deeply studied EVOS\'s existing visual identity and design language to ensure every output was indistinguishable from established brand standards.','Cross-Functional Collaboration — Engaged with marketing, content, and product teams to fully understand campaign goals before translating them into visual solutions.','Illustration-Driven Design — Leveraged original illustration skills to add distinctiveness and personality to campaign materials.','Workflow Efficiency — Developed a personal production pipeline to manage multiple simultaneous deliverables without compromising quality.']},
+      {h:'Results',bullets:['<strong>Millions of Impressions</strong> — Visual assets contributed to campaigns reaching EVOS\'s massive audience across Indonesia\'s digital gaming landscape.','<strong>Sustained Daily Output</strong> — Maintained consistent daily production of visual content across multiple social media channels throughout the internship.','<strong>Cross-Disciplinary Growth</strong> — Gained deep professional experience at the intersection of Graphic Design, Marketing Strategy, and Gaming Culture.']}
+    ]
+  },
+  crowdpunk:{
+    tag:'Web3 · Social Media · Community Growth · Jan 2025 – Present',
+    title:'Crowdpunk DAO — Community-Led Growth Campaign on X',
+    sections:[
+      {h:'Context',body:'Crowdpunk DAO is a decentralized autonomous organization that needed to grow its presence and community engagement on X (Twitter). As the lead of the Grow Campaign, I was tasked with building organic momentum by recruiting and coordinating content creators who could authentically promote Crowdpunk to their audiences.'},
+      {h:'Problem',body:'Decentralized projects like Crowdpunk DAO face a unique challenge in Web3 marketing: traditional paid advertising is often ineffective or restricted, while organic growth requires community trust and authentic voices. The challenge was to identify, pitch, onboard, and coordinate creators at scale, without a centralized marketing budget.'},
+      {h:'My Strategy',bullets:['Creator Scouting & Outreach — Proactively identified Web3-native content creators on X whose audience demographics aligned with Crowdpunk\'s target community.','Value-First Pitching — Crafted personalized outreach messages that led with Crowdpunk\'s unique DAO model and community benefits.','Campaign Coordination — Developed a shared content brief and talking points to maintain messaging consistency across all collaborating creators.','Community Integration — Positioned the campaign as a community movement rather than a top-down marketing push.']},
+      {h:'Results',bullets:['<strong>5+ Creator Collaborations</strong> — Built and led a network of more than five content creators actively promoting Crowdpunk DAO.','<strong>Expanded Brand Reach</strong> — Significantly extended Crowdpunk\'s organic visibility on X through trusted creator voices.','<strong>Community Trust</strong> — By prioritizing authentic storytelling, helped establish Crowdpunk DAO\'s reputation as a credible, community-first project.']}
+    ]
+  },
+  blockhood:{
+    tag:'Web3 Education · Graphic Design · 2024–2025',
+    title:'BlockHood — Visual Identity & Content Design',
+    sections:[
+      {h:'Context',body:'BlockHood is an Indonesian Web3 community founded by local creators with a mission to educate beginners who are new to the world of blockchain and decentralized technology. As a platform built on creator-driven content, BlockHood needed a strong and consistent visual identity to communicate its educational mission, build community trust, and promote its growing list of events and partnerships.'},
+      {h:'Problem',body:'Web3 education in Indonesia faces a significant accessibility gap — the concepts are complex, the audience is largely unfamiliar, and competition for attention on social media is fierce. BlockHood needed visually compelling and easy-to-understand design assets that could break down technical topics for beginners while also reflecting a credible, professional brand image.'},
+      {h:'My Solution',bullets:['<strong>Partnership Posters</strong> — Designed visually impactful announcement posters for BlockHood\'s strategic partnerships.','<strong>Daily Content Design</strong> — Created recurring daily content visuals including educational infographics, tips, and Web3 glossary cards.','<strong>Event Posters</strong> — Produced promotional posters for BlockHood events, combining strong visual hierarchy with clear calls-to-action.','<strong>Design Collaboration</strong> — Worked closely with the BlockHood team to align visual outputs with messaging goals.']},
+      {h:'Results',bullets:['<strong>Consistent Visual Identity</strong> — Delivered a cohesive and professional design presence across all content categories.','<strong>Enhanced Community Engagement</strong> — High-quality visual assets made complex Web3 topics more approachable and shareable.','<strong>Successful Event Promotion</strong> — Event posters effectively drove awareness and participation for each community event.']}
+    ]
+  },
+  bitget:{
+    tag:'Web3 · KOL Partnership · Brand Strategy',
+    title:'Bitget — 4× Strategic Exchange Partnership',
+    sections:[
+      {h:'Context',body:'After scaling my personal brand "Gebe" on X in just two weeks, my content and community engagement caught the attention of multi-billion dollar crypto exchanges. This led to a series of professional collaborations with Bitget and Toobit focused on community education and platform adoption.'},
+      {h:'Problem',body:'The Web3 and Crypto landscape is notoriously saturated with low-quality content, making it extremely difficult for new creators to gain authentic visibility. Global exchanges like Bitget have incredibly high standards for partnerships — they require institutional-grade visual quality, verified educational authority, and a clean professional reputation to avoid brand risk.'},
+      {h:'My Strategy',bullets:['High-Retention Marketing — Focused on delivering such high-quality visual assets that global brands opted for recurring partnerships rather than one-off deals.','Educational Authority — Integrated these exchanges into my two-batch mentorship program, teaching participants how to navigate professional trading tools.','Visual Trust-Building — Applied Adobe-level skills to create promotional materials that aligned with the strict branding guidelines of global exchanges.']},
+      {h:'Results',bullets:['<strong>4× Repeat Partnership with Bitget</strong> — The ultimate social proof of reliability and effectiveness as a creative partner.','<strong>5× Global Exchange Endorsements</strong> — Secured a total of five exchange endorsements (Bitget × 4 + Toobit × 1) within the first 14 days.','<strong>Proven Growth Engine</strong> — Demonstrated that a design-led personal branding strategy can scale from zero to global partnerships in under a month.']}
+    ]
+  },
+  mentorship:{
+    tag:'Web3 · Design Mentorship · Guest Speaker',
+    title:'Graphic Design Mentorship — Batch 1 & 2 Workshop',
+    sections:[
+      {h:'Context',body:'The workshop series, which expanded into multiple batches due to high demand, focused on empowering the next generation of Web3 and digital marketing professionals. The curriculum covered Content Creation, DeFi, and Web3 Jobs. I served as both Lead Graphic Designer and two-time Guest Speaker.'},
+      {h:'Problem',body:'With a vast curriculum to display, the promotional assets faced the risk of being cluttered and ignored on a busy social media timeline. The project required a visual language that could maintain its "cool factor" while effectively acting as an educational roadmap for participants.'},
+      {h:'My Strategy',bullets:['The "Double-Impact" Approach — Ensuring the promotional poster functioned both as a marketing tool and a visual preview of the high-quality design education participants would receive.','Narrative Visual Identity — Using a dynamic Comic/Pop-Art style to create a distinct brand for the workshop that stood out from typical corporate-style webinars.','Structured Information Hierarchy — Implementing a paneled layout to organize complex modules into digestible segments.']},
+      {h:'Results',bullets:['<strong>Retained Expert Status</strong> — Being invited back for a second batch as guest speaker confirms the high satisfaction rate of participants.','<strong>Optimized Marketing Reach</strong> — The Batch 2 poster generated significant social media traction, contributing to the program\'s continued growth.','<strong>End-to-End Creative Execution</strong> — Demonstrated the ability to not only "design a product" but to "teach the craft," positioning me as a leader in the creative industry.']}
+    ]
+  },
+  brand:{
+    tag:'Personal Branding · Web3 · Growth Strategy',
+    title:'Web3 Personal Brand — "Gebe" on X',
+    sections:[
+      {h:'Summary',body:'This project highlights the rapid growth of my personal brand "Gebe," which achieved significant organic traction on X within just 14 days. By leveraging high-end visual design and educational content, I successfully captured the attention of Indonesia\'s nascent Web3 market — a highly specialized niche representing only 3% of the national digital landscape.'},
+      {h:'Problem',bullets:['<strong>Extreme Market Saturation</strong> — The 3% Web3 audience in Indonesia is highly critical and easily fatigued by low-quality "shill" content.','<strong>The Complexity Gap</strong> — Technical Web3 topics are often presented in a dry, text-heavy format that fails to trigger engagement.','<strong>Low Visual Standards</strong> — Most local Web3 creators neglect aesthetic branding, leading to lack of institutional trust from global partners.']},
+      {h:'My Strategy',bullets:['Aesthetic Disruptor — Utilized Adobe Certified Expert skills to create a "Visual-First" education model.','The "3% Precision" Content Pillar — Designed highly specific educational threads that solved real pain points for the Web3 community, packaged in "eye-candy" infographics.','Psychological Branding — Used high-contrast, comic-inspired visual hierarchies to trigger "pattern interrupt" on the X timeline.']},
+      {h:'Results',bullets:['<strong>5× Global Exchange Endorsements</strong> — Secured partnerships with Bitget (×4) and Toobit (×1) within the first 14 days of launch.','<strong>100% Client Retention</strong> — Bitget signed for 4 consecutive campaigns, a rarity for new creators in the space.','<strong>Market Positioning</strong> — Established a "Blue Ocean" position as the go-to creator merging High-End Visual Art with Web3 Financial Literacy in Indonesia.']}
+    ]
+  }
+};
+
+function openModal(key){
+  const p=projects[key];if(!p)return;
+  let html=`<div class="modal-tag">${p.tag}</div><div class="modal-title">${p.title}</div>`;
+  p.sections.forEach(s=>{
+    html+=`<div class="modal-section"><h3>${s.h}</h3>`;
+    if(s.body) html+=`<p>${s.body}</p>`;
+    if(s.bullets){
+      html+='<ul class="modal-bullets">';
+      s.bullets.forEach(b=>html+=`<li>${b}</li>`);
+      html+='</ul>';
+    }
+    html+='</div>';
+  });
+  document.getElementById('modal-content').innerHTML=html;
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
