@@ -10,23 +10,19 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0a;--surface:#111;--border:#1e1e1e;--dim:#2a2a2a;
-  --white:#f5f5f0;--off:#a0a09a;
-  --fd:'Bebas Neue',sans-serif;
-  --fs:'DM Serif Display',serif;
-  --fb:'DM Sans',sans-serif;
+--bg:#0a0a0a;--surface:#111;--border:#1e1e1e;--dim:#2a2a2a;
+--white:#f5f5f0;--off:#a0a09a;
+--fd:'Bebas Neue',sans-serif;
+--fs:'DM Serif Display',serif;
+--fb:'DM Sans',sans-serif;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;overflow-x:hidden;cursor:none}
 body::before{content:'';position:fixed;inset:0;z-index:0;opacity:.03;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  pointer-events:none}
-
-/* CURSOR */
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+pointer-events:none}
 #cur{position:fixed;top:0;left:0;z-index:9999;width:10px;height:10px;background:var(--white);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform .12s,opacity .2s}
 #cur-r{position:fixed;top:0;left:0;z-index:9998;width:34px;height:34px;border:1px solid rgba(245,245,240,.3);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform .4s cubic-bezier(.23,1,.32,1)}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;transition:border-color .3s,background .3s,backdrop-filter .3s}
 nav.scrolled{border-bottom:1px solid var(--border);background:rgba(10,10,10,.88);backdrop-filter:blur(20px)}
 .nav-logo{font-family:var(--fd);font-size:1.35rem;letter-spacing:.12em;color:var(--white);text-decoration:none}
@@ -35,11 +31,8 @@ nav.scrolled{border-bottom:1px solid var(--border);background:rgba(10,10,10,.88)
 .nav-links a:hover{color:var(--white)}
 .nav-cta{padding:.5rem 1.3rem;border:1px solid var(--border);border-radius:2px;color:var(--white)!important;transition:background .2s,border-color .2s!important}
 .nav-cta:hover{background:var(--white)!important;color:var(--bg)!important}
-
-/* HERO */
 #hero{min-height:100vh;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:flex-end;padding:0 3rem 5rem;position:relative;overflow:hidden}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
-.hero-left{}
 .hero-eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--off);margin-bottom:1.4rem;opacity:0;animation:fadeUp .8s .2s forwards}
 .hero-name{font-family:var(--fd);font-size:clamp(4.5rem,12vw,11rem);line-height:.92;letter-spacing:.02em;color:var(--white);opacity:0;animation:fadeUp .9s .35s forwards}
 .hero-name em{font-family:var(--fs);font-style:italic;color:var(--off)}
@@ -60,22 +53,16 @@ nav.scrolled{border-bottom:1px solid var(--border);background:rgba(10,10,10,.88)
 .scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--off);animation:scrollAnim 2s 1.5s infinite}
 @keyframes scrollAnim{to{left:100%}}
 .scroll-text{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--off)}
-
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.82rem 1.9rem;font-family:var(--fb);font-size:.76rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .25s;cursor:none}
 .btn-primary{background:var(--white);color:var(--bg);border:1px solid var(--white)}
 .btn-primary:hover{background:transparent;color:var(--white)}
 .btn-outline{background:transparent;color:var(--white);border:1px solid var(--border)}
 .btn-outline:hover{border-color:var(--white)}
-
-/* SECTIONS */
 section{position:relative;padding:7rem 3rem}
 .sec-label{font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--off);margin-bottom:3rem;display:flex;align-items:center;gap:1.5rem}
 .sec-label::before{content:'';display:inline-block;width:36px;height:1px;background:var(--border)}
 .sec-title{font-family:var(--fs);font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.1;margin-bottom:3.5rem;font-weight:400}
 .sec-title em{font-style:italic;color:var(--off)}
-
-/* ABOUT */
 #about{border-top:1px solid var(--border)}
 .about-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:6rem;align-items:start}
 .about-stats{display:flex;flex-direction:column;gap:2.5rem;position:sticky;top:8rem}
@@ -85,24 +72,18 @@ section{position:relative;padding:7rem 3rem}
 .about-body p{font-size:1rem;line-height:1.9;color:var(--off);margin-bottom:1.4rem}
 .about-body p strong{color:var(--white);font-weight:400}
 .about-loc{display:flex;align-items:center;gap:.6rem;font-size:.76rem;color:var(--off);letter-spacing:.08em;margin-top:1.8rem}
-
-/* EXPERIENCE */
 #experience{border-top:1px solid var(--border)}
 .exp-list{display:flex;flex-direction:column;gap:0}
 .exp-item{border-top:1px solid var(--border);padding:2.8rem 0;display:grid;grid-template-columns:200px 1fr;gap:4rem}
 .exp-item:last-child{border-bottom:1px solid var(--border)}
-.exp-meta{}
 .exp-period{font-size:.72rem;letter-spacing:.1em;color:var(--off);text-transform:uppercase;margin-bottom:.8rem}
 .exp-type{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .7rem;border:1px solid var(--border);color:var(--off);border-radius:1px}
-.exp-body{}
 .exp-company{font-family:var(--fs);font-size:1.6rem;font-weight:400;color:var(--white);margin-bottom:.3rem}
 .exp-role{font-size:.8rem;color:var(--off);letter-spacing:.08em;margin-bottom:1.5rem}
 .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.6rem}
 .exp-bullets li{font-size:.88rem;line-height:1.7;color:var(--off);display:flex;gap:.9rem}
 .exp-bullets li::before{content:'—';color:var(--dim);flex-shrink:0}
 .exp-bullets li strong{color:var(--white);font-weight:400}
-
-/* PROJECTS */
 #projects{border-top:1px solid var(--border)}
 .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
 .proj-card{background:var(--bg);padding:2.8rem;cursor:none;transition:background .3s;position:relative;overflow:hidden}
@@ -115,8 +96,6 @@ section{position:relative;padding:7rem 3rem}
 .proj-desc{font-size:.83rem;line-height:1.72;color:var(--off)}
 .proj-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--off);border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .2s,border-color .2s;cursor:none;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--fb)}
 .proj-cta:hover{color:var(--white);border-color:var(--white)}
-
-/* MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .35s}
 .modal-overlay.open{opacity:1;pointer-events:all}
 .modal{position:fixed;top:0;right:0;bottom:0;z-index:501;width:min(680px,100vw);background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;transform:translateX(100%);transition:transform .4s cubic-bezier(.23,1,.32,1)}
@@ -135,8 +114,6 @@ section{position:relative;padding:7rem 3rem}
 .modal-bullets li{font-size:.87rem;line-height:1.7;color:var(--off);display:flex;gap:.9rem}
 .modal-bullets li::before{content:'→';color:var(--dim);flex-shrink:0}
 .modal-bullets li strong{color:var(--white);font-weight:400}
-
-/* SKILLS */
 #skills{border-top:1px solid var(--border)}
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
 .skill-grp{background:var(--bg);padding:2.5rem}
@@ -144,8 +121,6 @@ section{position:relative;padding:7rem 3rem}
 .skill-list{list-style:none;display:flex;flex-direction:column;gap:.65rem}
 .skill-list li{font-size:.87rem;color:var(--white);display:flex;align-items:center;gap:.75rem}
 .skill-list li::before{content:'';width:4px;height:4px;background:var(--off);border-radius:50%;flex-shrink:0}
-
-/* CERTS */
 #certificates{border-top:1px solid var(--border)}
 .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
 .cert-card{background:var(--surface);padding:2.8rem;position:relative;overflow:hidden}
@@ -158,8 +133,6 @@ section{position:relative;padding:7rem 3rem}
 .cert-date{font-size:.7rem;color:var(--off);letter-spacing:.08em}
 .cert-verify{font-size:.7rem;color:var(--white);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color .2s}
 .cert-verify:hover{border-color:var(--white)}
-
-/* CONTACT */
 #contact{border-top:1px solid var(--border);text-align:center;padding:8rem 3rem}
 .contact-over{font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--off);margin-bottom:2rem}
 .contact-h{font-family:var(--fd);font-size:clamp(4rem,10vw,9rem);line-height:.9;letter-spacing:.02em;color:var(--white);margin-bottom:3rem}
@@ -171,35 +144,29 @@ section{position:relative;padding:7rem 3rem}
 .contact-link{display:flex;align-items:center;gap:.55rem;font-size:.77rem;color:var(--off);text-decoration:none;letter-spacing:.08em;transition:color .2s;cursor:none}
 .contact-link:hover{color:var(--white)}
 .contact-link svg{width:13px;height:13px}
-
-/* FOOTER */
 footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between}
 .foot-copy{font-size:.7rem;color:var(--dim);letter-spacing:.08em}
 .foot-mark{font-family:var(--fd);font-size:.9rem;letter-spacing:.15em;color:var(--dim)}
-
-/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
-
-/* MOBILE */
 @media(max-width:900px){
-  nav{padding:1.2rem 1.5rem}
-  .nav-links{display:none}
-  #hero{grid-template-columns:1fr;padding:6rem 1.5rem 4rem}
-  .hero-right{align-items:flex-start}
-  .hero-photo-wrap{width:260px;height:320px}
-  section{padding:5rem 1.5rem}
-  .about-grid{grid-template-columns:1fr;gap:3rem}
-  .about-stats{position:static;flex-direction:row;flex-wrap:wrap}
-  .exp-item{grid-template-columns:1fr;gap:1.5rem}
-  .proj-grid{grid-template-columns:1fr}
-  .skills-grid{grid-template-columns:1fr}
-  .cert-grid{grid-template-columns:1fr}
-  footer{flex-direction:column;gap:1rem;text-align:center}
-  body{cursor:auto}
-  #cur,#cur-r{display:none}
-  .modal{width:100vw}
+nav{padding:1.2rem 1.5rem}
+.nav-links{display:none}
+#hero{grid-template-columns:1fr;padding:6rem 1.5rem 4rem}
+.hero-right{align-items:flex-start}
+.hero-photo-wrap{width:260px;height:320px}
+section{padding:5rem 1.5rem}
+.about-grid{grid-template-columns:1fr;gap:3rem}
+.about-stats{position:static;flex-direction:row;flex-wrap:wrap}
+.exp-item{grid-template-columns:1fr;gap:1.5rem}
+.proj-grid{grid-template-columns:1fr}
+.skills-grid{grid-template-columns:1fr}
+.cert-grid{grid-template-columns:1fr}
+footer{flex-direction:column;gap:1rem;text-align:center}
+body{cursor:auto}
+#cur,#cur-r{display:none}
+.modal{width:100vw}
 }
 </style>
 </head>
@@ -239,9 +206,8 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
   </div>
   <div class="hero-right">
     <div class="hero-photo-wrap">
-      <!-- Replace src with your actual photo. Rename your photo file to "photo.jpg" and put it in the same folder as index.html -->
       <img src="photo.jpg" alt="Gibran Al Hasan" class="hero-photo"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="hero-photo-placeholder" style="display:none">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         <span>Add photo.jpg</span>
@@ -260,22 +226,10 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
   <div class="sec-label">About</div>
   <div class="about-grid">
     <div class="about-stats">
-      <div class="stat reveal">
-        <div class="stat-n">3+</div>
-        <div class="stat-l">Years of Experience</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-n">5×</div>
-        <div class="stat-l">Exchange Endorsements</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-n">5+</div>
-        <div class="stat-l">Creator Collaborations</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-n">2×</div>
-        <div class="stat-l">Workshop Speaker</div>
-      </div>
+      <div class="stat reveal"><div class="stat-n">3+</div><div class="stat-l">Years of Experience</div></div>
+      <div class="stat reveal"><div class="stat-n">5×</div><div class="stat-l">Exchange Endorsements</div></div>
+      <div class="stat reveal"><div class="stat-n">5+</div><div class="stat-l">Creator Collaborations</div></div>
+      <div class="stat reveal"><div class="stat-n">2×</div><div class="stat-l">Workshop Speaker</div></div>
     </div>
     <div class="about-body reveal">
       <h2 class="sec-title">Designing with<br><em>intention</em></h2>
@@ -295,7 +249,6 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
   <div class="sec-label">Experience</div>
   <h2 class="sec-title reveal">Where I've<br><em>worked</em></h2>
   <div class="exp-list">
-
     <div class="exp-item reveal">
       <div class="exp-meta">
         <div class="exp-period">Jan 2025 — Present</div>
@@ -312,7 +265,6 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
         </ul>
       </div>
     </div>
-
     <div class="exp-item reveal">
       <div class="exp-meta">
         <div class="exp-period">Dec 2023 — Nov 2024</div>
@@ -329,7 +281,6 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
         </ul>
       </div>
     </div>
-
     <div class="exp-item reveal">
       <div class="exp-meta">
         <div class="exp-period">2024 — 2025</div>
@@ -345,7 +296,6 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
         </ul>
       </div>
     </div>
-
     <div class="exp-item reveal">
       <div class="exp-meta">
         <div class="exp-period">Nov 2022 — Mar 2024</div>
@@ -361,7 +311,6 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
         </ul>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -373,14 +322,14 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
 
     <div class="proj-card reveal" onclick="openModal('evos')">
       <div class="proj-idx">01</div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; margin-bottom: 20px; pointer-events: none;">
-          <img src="EVOS%20X%20Media%20Partner.jpg" alt="EVOS 1" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="EVOS%20TOP%20UP%20KOF%20Edition.jpg" alt="EVOS 2" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="EVOS%20TOP%20UP%20GongXiFaCai%20Edition.jpg" alt="EVOS 3" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="EVOS%20TOP%20UP%20X%20GoPay.jpg" alt="EVOS 4" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="EVOS%20TOP%20UP%20Daily.jpg" alt="EVOS 5" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="Doritos%20snack%20X%20EVOS.jpg" alt="EVOS 6" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px;margin-bottom:20px;pointer-events:none;">
+        <img src="EVOS%20X%20Media%20Partner.jpg" alt="EVOS 1" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="EVOS%20TOP%20UP%20KOF%20Edition.jpg" alt="EVOS 2" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="EVOS%20TOP%20UP%20GongXiFaCai%20Edition.jpg" alt="EVOS 3" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="EVOS%20TOP%20UP%20X%20GoPay.jpg" alt="EVOS 4" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="EVOS%20TOP%20UP%20Daily.jpg" alt="EVOS 5" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="Doritos%20snack%20X%20EVOS.jpg" alt="EVOS 6" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+      </div>
       <div class="proj-tag">Esports · Graphic Design · Internship</div>
       <div class="proj-title">EVOS Esports — Creative Direction & Design</div>
       <div class="proj-desc">Developed high-impact visual assets for marketing campaigns of one of Indonesia's largest esports organizations, reaching millions of viewers across multiple official channels.</div>
@@ -389,13 +338,13 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
 
     <div class="proj-card reveal" onclick="openModal('crowdpunk')">
       <div class="proj-idx">02</div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; margin-bottom: 20px; pointer-events: none;">
-          <img src="Aldy%20cp.png" alt="Crowdpunk 1" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="Bobo%20cp.png" alt="Crowdpunk 2" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="bagas%20cp.png" alt="Crowdpunk 3" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="wise%20cp.png" alt="Crowdpunk 4" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="yuki%20cp.png" alt="Crowdpunk 5" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px;margin-bottom:20px;pointer-events:none;">
+        <img src="Aldy%20cp.png" alt="Crowdpunk 1" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="Bobo%20cp.png" alt="Crowdpunk 2" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="bagas%20cp.png" alt="Crowdpunk 3" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="wise%20cp.png" alt="Crowdpunk 4" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="yuki%20cp.png" alt="Crowdpunk 5" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+      </div>
       <div class="proj-tag">Web3 · Social Media · Community Growth</div>
       <div class="proj-title">Crowdpunk DAO — Growth Campaign on X</div>
       <div class="proj-desc">Led a creator-driven campaign on X, onboarding 5+ content creators to organically grow Crowdpunk DAO's brand presence in the Web3 ecosystem.</div>
@@ -404,12 +353,12 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
 
     <div class="proj-card reveal" onclick="openModal('blockhood')">
       <div class="proj-idx">03</div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; margin-bottom: 20px; pointer-events: none;">
-          <img src="blockhood1.png" alt="BlockHood 1" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="blockhood2.png" alt="BlockHood 2" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="blockhood3.png" alt="BlockHood 3" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="blockhood4.png" alt="BlockHood 4" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px;margin-bottom:20px;pointer-events:none;">
+        <img src="blockhood1.png" alt="BlockHood 1" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="blockhood2.png" alt="BlockHood 2" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="blockhood3.png" alt="BlockHood 3" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="blockhood4.png" alt="BlockHood 4" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+      </div>
       <div class="proj-tag">Web3 Education · Graphic Design</div>
       <div class="proj-title">BlockHood — Visual Identity & Content Design</div>
       <div class="proj-desc">Designed partnership posters, daily educational content, and event materials for Indonesia's Web3 beginner education community.</div>
@@ -418,12 +367,12 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
 
     <div class="proj-card reveal" onclick="openModal('bitget')">
       <div class="proj-idx">04</div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; margin-bottom: 20px; pointer-events: none;">
-          <img src="Gebe%20bitget%201.png" alt="Bitget 1" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="Gebe%20bitget%202.png" alt="Bitget 2" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20bitget%203.png" alt="Bitget 3" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20bitget%204.png" alt="Bitget 4" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px;margin-bottom:20px;pointer-events:none;">
+        <img src="Gebe%20bitget%201.png" alt="Bitget 1" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="Gebe%20bitget%202.png" alt="Bitget 2" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="gebe%20bitget%203.png" alt="Bitget 3" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="gebe%20bitget%204.png" alt="Bitget 4" style="width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+      </div>
       <div class="proj-tag">Web3 · Brand Strategy · KOL Partnership</div>
       <div class="proj-title">Bitget — 4× Strategic Exchange Partnership</div>
       <div class="proj-desc">Secured and executed four consecutive partnership campaigns with Bitget, one of the world's leading crypto exchanges, as a verified KOL and Creative Strategist.</div>
@@ -432,31 +381,33 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
 
     <div class="proj-card reveal" onclick="openModal('mentorship')">
       <div class="proj-idx">05</div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; margin-bottom: 20px; pointer-events: none;">
-          <img src="workshop%20poster%201.png" alt="Workshop Poster 1" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="workshop%20poster%202.png" alt="Workshop Poster 2" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px;margin-bottom:20px;pointer-events:none;">
+        <img src="workshop%20poster%201.png" alt="Workshop Poster 1" style="width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="workshop%20poster%202.png" alt="Workshop Poster 2" style="width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+      </div>
       <div class="proj-tag">Web3 · Design Mentorship · Speaker</div>
       <div class="proj-title">Design Mentorship — Batch 1 & 2 Workshop</div>
       <div class="proj-desc">Served as Lead Graphic Designer and two-time Guest Speaker for a high-traffic Web3 digital workshop series, covering Content Creation, DeFi, and Web3 Jobs.</div>
       <button class="proj-cta">Read Case Study →</button>
     </div>
 
-   <div class="proj-card reveal" onclick="openModal('brand')">
-    <div class="proj-idx">06</div>
-    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-top: 20px; pointer-events: none;">
-        <img src="Gebe%20content%201.png" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <img src="gebe%20content%202.png" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <img src="gebe%20content%203.png" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <img src="gebe%20content%204.png" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <img src="gebe%20grow.png" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <img src="gebe%20toobit.png" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+    <div class="proj-card reveal" onclick="openModal('brand')">
+      <div class="proj-idx">06</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-top:20px;pointer-events:none;">
+        <img src="Gebe%20content%201.png" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="gebe%20content%202.png" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="gebe%20content%203.png" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="gebe%20content%204.png" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="gebe%20grow.png" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="gebe%20toobit.png" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.1);">
+      </div>
+      <div class="proj-tag">Personal Branding · Web3 · Growth</div>
+      <div class="proj-title">Web3 Personal Brand — "Gebe" on X</div>
+      <div class="proj-desc">Scaled a Web3 personal brand from zero to 5 global exchange endorsements in just 14 days using a Visual-First educational content strategy on X (Twitter).</div>
+      <button class="proj-cta">Read Case Study →</button>
     </div>
-    <div class="proj-tag">Personal Branding · Web3 · Growth</div>
-    <div class="proj-title">Web3 Personal Brand — "Gebe" on X</div>
-    <div class="proj-desc">Scaled a Web3 personal brand from zero to 5 global exchange endorsements in just 14 days using a Visual-First educational content strategy on X (Twitter).</div>
-    <button class="proj-cta">Read Case Study →</button>
-</div>
+
+  </div>
 </section>
 
 <!-- SKILLS -->
@@ -467,31 +418,19 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
     <div class="skill-grp">
       <div class="skill-grp-title">🎨 Design & Visual</div>
       <ul class="skill-list">
-        <li>Adobe Illustrator</li>
-        <li>Adobe Photoshop</li>
-        <li>Adobe InDesign</li>
-        <li>Figma</li>
-        <li>Canva</li>
+        <li>Adobe Illustrator</li><li>Adobe Photoshop</li><li>Adobe InDesign</li><li>Figma</li><li>Canva</li>
       </ul>
     </div>
     <div class="skill-grp">
       <div class="skill-grp-title">📱 Social Media & Community</div>
       <ul class="skill-list">
-        <li>Social Media Strategy</li>
-        <li>Content Planning & Curation</li>
-        <li>Community Management</li>
-        <li>Creator Outreach & Collaboration</li>
-        <li>Web3 & DAO Ecosystem</li>
+        <li>Social Media Strategy</li><li>Content Planning & Curation</li><li>Community Management</li><li>Creator Outreach & Collaboration</li><li>Web3 & DAO Ecosystem</li>
       </ul>
     </div>
     <div class="skill-grp">
       <div class="skill-grp-title">✍️ Copywriting & Communication</div>
       <ul class="skill-list">
-        <li>Persuasive Ad Copywriting</li>
-        <li>Brand Storytelling</li>
-        <li>Content Writing (EN & ID)</li>
-        <li>Campaign Messaging</li>
-        <li>Audience Research</li>
+        <li>Persuasive Ad Copywriting</li><li>Brand Storytelling</li><li>Content Writing (EN & ID)</li><li>Campaign Messaging</li><li>Audience Research</li>
       </ul>
     </div>
   </div>
@@ -594,18 +533,8 @@ const projects={
     tag:'Esports · Graphic Design · Internship · Dec 2023 - Nov 2024',
     title:'EVOS Esports ─ Creative Direction & Design',
     sections:[
-      {
-        h:'Project Gallery',
-        body:`<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 25px;">
-          <img src="EVOS%20X%20Media%20Partner.jpg" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="EVOS%20TOP%20UP%20KOF%20Edition.jpg" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="EVOS%20TOP%20UP%20GongXiFaCai%20Edition.jpg" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="EVOS%20TOP%20UP%20X%20GoPay.jpg" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="EVOS%20TOP%20UP%20Daily.jpg" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="Doritos%20snack%20X%20EVOS.jpg" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>`
-      },
-      {h:'Context',body:'EVOS Esports is one of Indonesia\'s largest and most recognized esports organizations, with a fanbase reaching millions of viewers across Southeast Asia.'},
+      {h:'Project Gallery',body:`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:25px;"><img src="EVOS%20X%20Media%20Partner.jpg" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="EVOS%20TOP%20UP%20KOF%20Edition.jpg" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="EVOS%20TOP%20UP%20GongXiFaCai%20Edition.jpg" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="EVOS%20TOP%20UP%20X%20GoPay.jpg" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="EVOS%20TOP%20UP%20Daily.jpg" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="Doritos%20snack%20X%20EVOS.jpg" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"></div>`},
+      {h:'Context',body:"EVOS Esports is one of Indonesia's largest and most recognized esports organizations, with a fanbase reaching millions of viewers across Southeast Asia."},
       {h:'Problem',body:'As a leading esports organization, EVOS demands a constant and high-volume output of visual assets across multiple official social media platforms.'},
       {h:'My Strategy',bullets:['Created a dynamic grid system for social media assets','Collaborated with cross-functional teams for brand activations','Executed campaign-specific visual directions for partners like GoPay and Doritos']},
       {h:'Results',bullets:['Increased engagement rates across campaign posts','Successful visual execution of 5+ major partnership campaigns','Consistent delivery of high-quality assets during high-pressure timelines']}
@@ -615,16 +544,7 @@ const projects={
     tag:'Web3 · Growth Campaign · Marketing · Content Strategy',
     title:'Crowdpunk DAO ─ Growth Campaign on X',
     sections:[
-      {
-        h:'Project Gallery',
-        body:`<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 25px;">
-          <img src="Aldy%20cp.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="Bobo%20cp.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="bagas%20cp.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="wise%20cp.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="yuki%20cp.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>`
-      },
+      {h:'Project Gallery',body:`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:25px;"><img src="Aldy%20cp.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="Bobo%20cp.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="bagas%20cp.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="wise%20cp.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="yuki%20cp.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"></div>`},
       {h:'Context',body:'Crowdpunk DAO is a decentralized community focused on backing early-stage Web3 builders and creators. I managed their growth marketing and content dispatch on X (Twitter).'},
       {h:'Problem',body:'Web3 attention spans are notoriously short. The challenge was to break through the noise, explain complex DAO mechanics simply, and drive meaningful community conversion.'},
       {h:'My Strategy',bullets:['Designed high-hook visual threads explaining the DAO ecosystem','Implemented data-driven posting schedules targeting active Web3 hours','Leveraged narrative-driven copywriting to build a loyal core community']},
@@ -635,15 +555,7 @@ const projects={
     tag:'Web3 · Visual Identity · Content Design · Branding',
     title:'BlockHood ─ Visual Identity & Content Design',
     sections:[
-      {
-        h:'Project Gallery',
-        body:`<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 25px;">
-          <img src="blockhood1.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="blockhood2.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="blockhood3.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="blockhood4.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>`
-      },
+      {h:'Project Gallery',body:`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:25px;"><img src="blockhood1.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="blockhood2.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="blockhood3.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="blockhood4.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"></div>`},
       {h:'Context',body:'BlockHood is an emerging Web3 platform tailored for blockchain developers and community builders. I was tasked with establishing their foundational visual identity and core social graphics.'},
       {h:'Problem',body:'Many tech-heavy brands struggle to look approachable. The goal was to build a cohesive visual style that feels premium, energetic, and highly readable for continuous content drops.'},
       {h:'My Strategy',bullets:['Developed a structured brand guide using cyber-neon accent tones','Engineered versatile graphic templates for fast-turnaround educational posts','Created unique visual assets for community announcements and medium posts']},
@@ -654,15 +566,7 @@ const projects={
     tag:'Crypto · Marketing · Strategic Partnership · 2024',
     title:'Bitget ─ 4× Strategic Exchange Partnership',
     sections:[
-      {
-        h:'Project Gallery',
-        body:`<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 25px;">
-          <img src="Gebe%20bitget%201.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="Gebe%20bitget%202.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20bitget%203.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20bitget%204.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>`
-      },
+      {h:'Project Gallery',body:`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:25px;"><img src="Gebe%20bitget%201.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="Gebe%20bitget%202.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="gebe%20bitget%203.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="gebe%20bitget%204.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"></div>`},
       {h:'Context',body:'Bitget is a world-leading cryptocurrency exchange. I was involved in managing visual communication for their strategic partnership campaigns within the Web3 community.'},
       {h:'Problem',body:'The crypto exchange market is highly competitive. We needed to create visuals that instantly communicate trust and the unique value proposition of Bitget during major community activations.'},
       {h:'My Strategy',bullets:['Standardized branding across partnership assets for 4 major campaigns','Designed conversion-focused banners and social media assets','Localized campaign visuals to resonate with specific community niches']},
@@ -673,40 +577,25 @@ const projects={
     tag:'Education · Graphic Design · Workshop · Batch 1 & 2',
     title:'Design Mentorship ─ Batch 1 & 2 Workshop',
     sections:[
-      {
-        h:'Project Gallery',
-        body:`<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 25px;">
-          <img src="workshop%20poster%201.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="workshop%20poster%202.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>`
-      },
+      {h:'Project Gallery',body:`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:25px;"><img src="workshop%20poster%201.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="workshop%20poster%202.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"></div>`},
       {h:'Context',body:'Design Mentorship is an educational initiative aimed at empowering aspiring designers with core visual design principles and software mastery across two structured batches.'},
       {h:'Problem',body:'Many beginners struggle with design scaling, visual hierarchy, and layout composition. The challenge was to create a compelling workshop curriculum and marketing materials that drive student enrollment.'},
       {h:'My Strategy',bullets:['Designed high-conversion promotional posters tailored for design students','Structured a multi-week syllabus covering typography, layout, and tool mechanics','Provided real-time feedback loops and practical design critique sessions']},
       {h:'Results',bullets:['Successfully launched and executed Batch 1 & 2 workshops with full enrollment','Mentored multiple students who went on to create independent portfolios and secure internships','Maintained a 95% satisfaction rate among attendees through personalized guidance']}
     ]
   },
- brand:{
+  brand:{
     tag:'Personal Branding · Web3 · Growth Strategy',
     title:'Web3 Personal Brand ─ "Gebe" on X',
     sections:[
-      {
-        h:'Project Gallery',
-        body:`<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 25px;">
-          <img src="Gebe%20content%201.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20content%202.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20content%203.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20content%204.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20grow.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-          <img src="gebe%20toobit.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        </div>`
-      },
+      {h:'Project Gallery',body:`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:25px;"><img src="Gebe%20content%201.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="gebe%20content%202.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="gebe%20content%203.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="gebe%20content%204.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="gebe%20grow.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"><img src="gebe%20toobit.png" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"></div>`},
       {h:'Summary',body:'This project highlights the rapid growth of my personal brand "Gebe," which achieved significant organic traction on X within just 14 days.'},
       {h:'Problem',bullets:['<strong>Extreme Market Saturation</strong> - The 3% Web3 audience in Indonesia is highly critical and easily fatigued by low-quality content.']},
       {h:'My Strategy',bullets:['Aesthetic Disruptor - Utilized Adobe Certified Expert skills to create a "Visual-First" education model.','The 3% Precision - Curated high-value design insights for Web3 builders.']},
       {h:'Results',bullets:['<strong>5x Global Exchange Endorsements</strong> - Secured partnerships with Bitget (x4) and Toobit (x1) within the first 14 days of branding.']}
     ]
-  },
+  }
+};
 
 function openModal(key){
   const p=projects[key];if(!p)return;
@@ -726,11 +615,13 @@ function openModal(key){
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
+
 function closeModal(){
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow='';
 }
+
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 </script>
 </body>
