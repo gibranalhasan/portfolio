@@ -444,6 +444,14 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-i
 
     <div class="proj-card reveal" onclick="openModal('brand')">
       <div class="proj-idx">06</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; margin-bottom: 20px; pointer-events: none;">
+          <img src="Gebe%20content%201.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20content%202.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20content%203.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20content%204.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20grow.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20toobit.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+        </div>
       <div class="proj-tag">Personal Branding · Web3 · Growth</div>
       <div class="proj-title">Web3 Personal Brand — "Gebe" on X</div>
       <div class="proj-desc">Scaled a Web3 personal brand from zero to 5 global exchange endorsements in just 14 days using a Visual-First educational content strategy on X (Twitter).</div>
@@ -682,15 +690,25 @@ const projects={
   },
   brand:{
     tag:'Personal Branding · Web3 · Growth Strategy',
-    title:'Web3 Personal Brand — "Gebe" on X',
+    title:'Web3 Personal Brand ─ "Gebe" on X',
     sections:[
-      {h:'Summary',body:'This project highlights the rapid growth of my personal brand "Gebe," which achieved significant organic traction on X within just 14 days. By leveraging high-end visual design and educational content, I successfully captured the attention of Indonesia\'s nascent Web3 market — a highly specialized niche representing only 3% of the national digital landscape.'},
-      {h:'Problem',bullets:['<strong>Extreme Market Saturation</strong> — The 3% Web3 audience in Indonesia is highly critical and easily fatigued by low-quality "shill" content.','<strong>The Complexity Gap</strong> — Technical Web3 topics are often presented in a dry, text-heavy format that fails to trigger engagement.','<strong>Low Visual Standards</strong> — Most local Web3 creators neglect aesthetic branding, leading to lack of institutional trust from global partners.']},
-      {h:'My Strategy',bullets:['Aesthetic Disruptor — Utilized Adobe Certified Expert skills to create a "Visual-First" education model.','The "3% Precision" Content Pillar — Designed highly specific educational threads that solved real pain points for the Web3 community, packaged in "eye-candy" infographics.','Psychological Branding — Used high-contrast, comic-inspired visual hierarchies to trigger "pattern interrupt" on the X timeline.']},
-      {h:'Results',bullets:['<strong>5× Global Exchange Endorsements</strong> — Secured partnerships with Bitget (×4) and Toobit (×1) within the first 14 days of launch.','<strong>100% Client Retention</strong> — Bitget signed for 4 consecutive campaigns, a rarity for new creators in the space.','<strong>Market Positioning</strong> — Established a "Blue Ocean" position as the go-to creator merging High-End Visual Art with Web3 Financial Literacy in Indonesia.']}
+      {
+        h:'Project Gallery',
+        body:`<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 25px;">
+          <img src="Gebe%20content%201.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20content%202.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20content%203.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20content%204.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20grow.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="gebe%20toobit.png" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        </div>`
+      },
+      {h:'Summary',body:'This project highlights the rapid growth of my personal brand "Gebe," which achieved significant organic traction on X within just 14 days.'},
+      {h:'Problem',bullets:['<strong>Extreme Market Saturation</strong> - The 3% Web3 audience in Indonesia is highly critical and easily fatigued by low-quality content.']},
+      {h:'My Strategy',bullets:['Aesthetic Disruptor - Utilized Adobe Certified Expert skills to create a "Visual-First" education model.','The 3% Precision - Curated high-value design insights for Web3 builders.']},
+      {h:'Results',bullets:['<strong>5x Global Exchange Endorsements</strong> - Secured partnerships with Bitget (x4) and Toobit (x1) within the first 14 days of branding.']}
     ]
-  }
-};
+  },
 
 function openModal(key){
   const p=projects[key];if(!p)return;
